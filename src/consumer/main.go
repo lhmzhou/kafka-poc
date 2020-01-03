@@ -9,6 +9,8 @@ import (
 
 // Start triggers a new consumer routine
 func Start(topic string) {
+
+	// logger := util.GetLogger("consumer", "KafkaConsumer::dispatcher")
 	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers":  "localhost",
 		"group.id":           "pocGroup",

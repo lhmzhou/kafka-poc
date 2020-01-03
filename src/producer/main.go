@@ -11,8 +11,8 @@ var producer *kafka.Producer
 // Start triggers a new producer routine, creates the underlying Kafka producer client and events receiver, leaving it ready to handle events.
 func Start(topics string, msg string) {
 
-	sig := make(chan bool)
-	defer close(sig)
+	sigChannel := make(chan bool)
+	defer close(sigChannel)
 
 	// producer, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost"})
 	producer, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "kakfa:8088"}) // create a new producer and connects to Kafka cluster
@@ -31,11 +31,12 @@ func Start(topics string, msg string) {
 				m := ev
 				if m.TopicPartition.Error != nil {
 					log.Printf("Delivery failed: %v\n", m.TopicPartition.Error)
-					sig <- false
+					// fmt.Fprintf(os.Stderr, "%% Error: %v\n", e)
+					sigChannel <- false
 				} else {
 					// log.Printf("Produced message to %v\n", m.TopicPartition)
 					log.Printf("Produced message to %v\n", string(m.Value))
-					sig <- true
+					sigChannel <- true
 				}
 				return
 			}

@@ -36,6 +36,6 @@ Sarama is an MIT-licensed Go client library for [Apache Kafka](https://kafka.apa
 Pull requests are welcomed with arms wide open.
 
 ## On the horizon
-[ ] consuming messages from Kafka using sarama-cluster
-[ ] intercept and mutate records received by the consumer
-[ ] compare stability of Kafka implementation with Rust
+- [ ] consuming messages from Kafka using sarama-cluster
+- [ ] intercept and mutate records received by the consumer
+- [ ] compare stability of Kafka implementation with Rust
