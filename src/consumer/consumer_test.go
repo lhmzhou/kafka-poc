@@ -7,13 +7,13 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
-func TestConnectToProducer(t *testing.T) {
+func TestConnectionToProducer(t *testing.T) {
 	actual, err := ConnectToProducer()
 	if err != nil {
 		panic(err)
 	}
-	cfg := &kafka.ConfigMap{"bootstrap.servers": "localhost:9092"}
-	expected, err := kafka.NewProducer(cfg)
+	config := &kafka.ConfigMap{"bootstrap.servers": "localhost:8088"}
+	expected, err := kafka.NewProducer(config)
 	if err != nil {
 		panic(err)
 	}
